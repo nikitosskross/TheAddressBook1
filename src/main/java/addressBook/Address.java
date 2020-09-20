@@ -8,6 +8,13 @@ public class Address {
     private int apartmentNumber;
 
     public Address (String nameStreet, int houseNumber, int apartmentNumber) {
+        if (nameStreet.equals("") || nameStreet.equals(" "))
+            throw new NullPointerException("name street cannot be empty");
+        if (houseNumber < 1)
+            throw new IllegalArgumentException("house number cannot be less than 1");
+        if (apartmentNumber < 1)
+            throw new IllegalArgumentException("apartment number cannot be less than 1");
+
         this.nameStreet = nameStreet;
         this.houseNumber = houseNumber;
         this.apartmentNumber = apartmentNumber;
@@ -35,7 +42,8 @@ public class Address {
         if (this == x) return true;
         if (x == null || getClass() != x.getClass()) return false;
         Address address = (Address) x;
-        return nameStreet.equals(address.nameStreet) && houseNumber == address.houseNumber && apartmentNumber == address.apartmentNumber;
+        return nameStreet.equals(address.nameStreet)
+                && houseNumber == address.houseNumber && apartmentNumber == address.apartmentNumber;
     }
 
     @Override
